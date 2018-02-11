@@ -8,20 +8,20 @@ using System.Text;
 using System.Windows.Forms;
 using HslCommunication.Profinet;
 using HslCommunication;
+using HslCommunication.ModBus;
 using System.Threading;
 
 namespace HslCommunicationDemo
 {
-    public partial class FormSiemens : Form
+    public partial class FormModbus : Form
     {
-        public FormSiemens( SiemensPLCS siemensPLCS)
+        public FormModbus()
         {
             InitializeComponent( );
-            siemensTcpNet = new SiemensTcpNet( siemensPLCS );
         }
 
 
-        private SiemensTcpNet siemensTcpNet = null;
+        private ModBusTcpClient busTcpClient = null;
 
         private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
         {
@@ -96,11 +96,19 @@ namespace HslCommunicationDemo
                 return;
             }
 
-            siemensTcpNet.PLCIpAddress = address;
+
+            if(!int.TryParse(textBox2.Text,out int port))
+            {
+                MessageBox.Show( "端口输入不正确！" );
+                return;
+            }
+
+            busTcpClient?.ConnectClose( );
+            busTcpClient = new ModBusTcpClient( textBox1.Text, port );
 
             try
             {
-                OperateResult connect = siemensTcpNet.ConnectServer( );
+                OperateResult connect = busTcpClient.ConnectServer( );
                 if (connect.IsSuccess)
                 {
                     MessageBox.Show( "连接成功！" );
@@ -122,7 +130,7 @@ namespace HslCommunicationDemo
         private void button2_Click( object sender, EventArgs e )
         {
             // 断开连接
-            siemensTcpNet.ConnectClose( );
+            busTcpClient.ConnectClose( );
             button2.Enabled = false;
             button1.Enabled = true;
             panel2.Enabled = false;
@@ -142,63 +150,59 @@ namespace HslCommunicationDemo
         private void button_read_bool_Click( object sender, EventArgs e )
         {
             // 读取bool变量
-            readResultRender( siemensTcpNet.ReadBoolFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadBoolCoil( ushort.Parse(textBox3.Text )), textBox3.Text, textBox4 );
         }
-        private void button_read_byte_Click( object sender, EventArgs e )
-        {
-            // 读取byte变量
-            readResultRender( siemensTcpNet.ReadByteFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
-        }
+
         private void button_read_short_Click( object sender, EventArgs e )
         {
             // 读取short变量
-            readResultRender( siemensTcpNet.ReadShortFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadShortRegister( ushort.Parse( textBox3.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ushort_Click( object sender, EventArgs e )
         {
             // 读取ushort变量
-            readResultRender( siemensTcpNet.ReadUShortFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadUShortRegister( ushort.Parse( textBox3.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_int_Click( object sender, EventArgs e )
         {
             // 读取int变量
-            readResultRender( siemensTcpNet.ReadIntFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadIntRegister( ushort.Parse( textBox3.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_uint_Click( object sender, EventArgs e )
         {
             // 读取uint变量
-            readResultRender( siemensTcpNet.ReadUIntFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadUIntRegister( ushort.Parse( textBox3.Text ) ), textBox3.Text, textBox4 );
         }
         private void button_read_long_Click( object sender, EventArgs e )
         {
             // 读取long变量
-            readResultRender( siemensTcpNet.ReadLongFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadLongRegister( ushort.Parse( textBox3.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_ulong_Click( object sender, EventArgs e )
         {
             // 读取ulong变量
-            readResultRender( siemensTcpNet.ReadULongFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadULongRegister( ushort.Parse( textBox3.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_float_Click( object sender, EventArgs e )
         {
             // 读取float变量
-            readResultRender( siemensTcpNet.ReadFloatFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadFloatRegister( ushort.Parse( textBox3.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_double_Click( object sender, EventArgs e )
         {
             // 读取double变量
-            readResultRender( siemensTcpNet.ReadDoubleFromPLC( textBox3.Text ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadDoubleRegister( ushort.Parse( textBox3.Text ) ), textBox3.Text, textBox4 );
         }
 
         private void button_read_string_Click( object sender, EventArgs e )
         {
             // 读取字符串
-            readResultRender( siemensTcpNet.ReadStringFromPLC( textBox3.Text, ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
+            readResultRender( busTcpClient.ReadStringRegister( ushort.Parse( textBox3.Text ), ushort.Parse( textBox5.Text ) ), textBox3.Text, textBox4 );
         }
 
 
@@ -212,20 +216,7 @@ namespace HslCommunicationDemo
             // bool写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, bool.Parse( textBox7.Text ) ), textBox8.Text );
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( ex.Message );
-            }
-        }
-
-        private void button23_Click( object sender, EventArgs e )
-        {
-            // byte写入
-            try
-            {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, byte.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteOneCoil( ushort.Parse(textBox8.Text), bool.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -238,7 +229,7 @@ namespace HslCommunicationDemo
             // short写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, short.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), short.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -251,7 +242,7 @@ namespace HslCommunicationDemo
             // ushort写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, ushort.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), ushort.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -265,7 +256,7 @@ namespace HslCommunicationDemo
             // int写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, int.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), int.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -278,7 +269,7 @@ namespace HslCommunicationDemo
             // uint写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, uint.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), uint.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -291,7 +282,7 @@ namespace HslCommunicationDemo
             // long写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, long.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), long.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -304,7 +295,7 @@ namespace HslCommunicationDemo
             // ulong写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, ulong.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), ulong.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -317,7 +308,7 @@ namespace HslCommunicationDemo
             // float写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, float.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), float.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -330,7 +321,7 @@ namespace HslCommunicationDemo
             // double写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteIntoPLC( textBox8.Text, double.Parse( textBox7.Text ) ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), double.Parse( textBox7.Text ) ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -344,7 +335,7 @@ namespace HslCommunicationDemo
             // string写入
             try
             {
-                writeResultRender( siemensTcpNet.WriteAsciiStringIntoPLC( textBox8.Text, textBox7.Text ), textBox8.Text );
+                writeResultRender( busTcpClient.WriteRegister( ushort.Parse( textBox8.Text ), textBox7.Text ), textBox8.Text );
             }
             catch (Exception ex)
             {
@@ -363,7 +354,7 @@ namespace HslCommunicationDemo
         {
             try
             {
-                OperateResult<byte[]> read = siemensTcpNet.ReadFromPLC( textBox3.Text, ushort.Parse( textBox9.Text ) );
+                OperateResult<byte[]> read = busTcpClient.ReadRegister( ushort.Parse( textBox8.Text ), ushort.Parse( textBox9.Text ) );
                 if (read.IsSuccess)
                 {
                     textBox10.Text = "结果：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -390,7 +381,7 @@ namespace HslCommunicationDemo
         {
             try
             {
-                OperateResult<byte[]> read = siemensTcpNet.ReadFromServerCore( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
+                OperateResult<byte[]> read = busTcpClient.ReadFromServerCore( HslCommunication.BasicFramework.SoftBasic.HexStringToBytes( textBox13.Text ) );
                 if (read.IsSuccess)
                 {
                     textBox11.Text = "结果：" + HslCommunication.BasicFramework.SoftBasic.ByteToHexString( read.Content );
@@ -449,7 +440,7 @@ namespace HslCommunicationDemo
 
                 try
                 {
-                    OperateResult<short> read = siemensTcpNet.ReadShortFromPLC( textBox12.Text );
+                    OperateResult<short> read = busTcpClient.ReadShortRegister( ushort.Parse(textBox12.Text ));
                     if (read.IsSuccess)
                     {
                         // 显示曲线

@@ -1,6 +1,6 @@
 ﻿namespace HslCommunicationDemo
 {
-    partial class FormSiemens
+    partial class FormModbus
     {
         /// <summary>
         /// Required designer variable.
@@ -43,6 +43,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
+            this.userCurve1 = new HslCommunication.Controls.UserCurve();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -85,7 +85,6 @@
             this.button_read_int = new System.Windows.Forms.Button();
             this.button_read_ushort = new System.Windows.Forms.Button();
             this.button_read_short = new System.Windows.Forms.Button();
-            this.button_read_byte = new System.Windows.Forms.Button();
             this.button_read_bool = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -97,9 +96,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.userCurve1 = new HslCommunication.Controls.UserCurve();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -114,8 +110,6 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox2);
@@ -153,10 +147,9 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(305, 14);
             this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(141, 23);
             this.textBox2.TabIndex = 3;
-            this.textBox2.Text = "102";
+            this.textBox2.Text = "502";
             // 
             // label3
             // 
@@ -261,7 +254,7 @@
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(132, 23);
             this.textBox12.TabIndex = 5;
-            this.textBox12.Text = "M100";
+            this.textBox12.Text = "100";
             // 
             // label15
             // 
@@ -271,6 +264,17 @@
             this.label15.Size = new System.Drawing.Size(44, 17);
             this.label15.TabIndex = 4;
             this.label15.Text = "地址：";
+            // 
+            // userCurve1
+            // 
+            this.userCurve1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.userCurve1.Location = new System.Drawing.Point(13, 82);
+            this.userCurve1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.userCurve1.Name = "userCurve1";
+            this.userCurve1.Size = new System.Drawing.Size(400, 189);
+            this.userCurve1.TabIndex = 0;
+            this.userCurve1.ValueMaxLeft = 200F;
+            this.userCurve1.ValueMaxRight = 200F;
             // 
             // groupBox4
             // 
@@ -320,6 +324,7 @@
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(357, 23);
             this.textBox13.TabIndex = 5;
+            this.textBox13.Text = "00 00 00 00 00 06 FF 03 00 00 00 05";
             // 
             // label16
             // 
@@ -397,7 +402,7 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(102, 23);
             this.textBox6.TabIndex = 5;
-            this.textBox6.Text = "M100";
+            this.textBox6.Text = "100";
             // 
             // label11
             // 
@@ -420,7 +425,6 @@
             this.groupBox2.Controls.Add(this.button20);
             this.groupBox2.Controls.Add(this.button21);
             this.groupBox2.Controls.Add(this.button22);
-            this.groupBox2.Controls.Add(this.button23);
             this.groupBox2.Controls.Add(this.button24);
             this.groupBox2.Controls.Add(this.textBox7);
             this.groupBox2.Controls.Add(this.label9);
@@ -532,23 +536,13 @@
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
-            // button23
-            // 
-            this.button23.Location = new System.Drawing.Point(326, 24);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(82, 28);
-            this.button23.TabIndex = 7;
-            this.button23.Text = "byte写入";
-            this.button23.UseVisualStyleBackColor = true;
-            this.button23.Click += new System.EventHandler(this.button23_Click);
-            // 
             // button24
             // 
             this.button24.Location = new System.Drawing.Point(226, 24);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(82, 28);
             this.button24.TabIndex = 6;
-            this.button24.Text = "bool写入";
+            this.button24.Text = "线圈写入";
             this.button24.UseVisualStyleBackColor = true;
             this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
@@ -576,7 +570,7 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(132, 23);
             this.textBox8.TabIndex = 3;
-            this.textBox8.Text = "M100";
+            this.textBox8.Text = "100";
             // 
             // label10
             // 
@@ -599,7 +593,6 @@
             this.groupBox1.Controls.Add(this.button_read_int);
             this.groupBox1.Controls.Add(this.button_read_ushort);
             this.groupBox1.Controls.Add(this.button_read_short);
-            this.groupBox1.Controls.Add(this.button_read_byte);
             this.groupBox1.Controls.Add(this.button_read_bool);
             this.groupBox1.Controls.Add(this.textBox4);
             this.groupBox1.Controls.Add(this.label7);
@@ -711,23 +704,13 @@
             this.button_read_short.UseVisualStyleBackColor = true;
             this.button_read_short.Click += new System.EventHandler(this.button_read_short_Click);
             // 
-            // button_read_byte
-            // 
-            this.button_read_byte.Location = new System.Drawing.Point(415, 19);
-            this.button_read_byte.Name = "button_read_byte";
-            this.button_read_byte.Size = new System.Drawing.Size(82, 28);
-            this.button_read_byte.TabIndex = 7;
-            this.button_read_byte.Text = "byte读取";
-            this.button_read_byte.UseVisualStyleBackColor = true;
-            this.button_read_byte.Click += new System.EventHandler(this.button_read_byte_Click);
-            // 
             // button_read_bool
             // 
             this.button_read_bool.Location = new System.Drawing.Point(315, 19);
             this.button_read_bool.Name = "button_read_bool";
             this.button_read_bool.Size = new System.Drawing.Size(82, 28);
             this.button_read_bool.TabIndex = 6;
-            this.button_read_bool.Text = "bool读取";
+            this.button_read_bool.Text = "线圈读取";
             this.button_read_bool.UseVisualStyleBackColor = true;
             this.button_read_bool.Click += new System.EventHandler(this.button_read_bool_Click);
             // 
@@ -755,7 +738,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(233, 23);
             this.textBox3.TabIndex = 3;
-            this.textBox3.Text = "M100";
+            this.textBox3.Text = "100";
             // 
             // label6
             // 
@@ -792,7 +775,7 @@
             this.linkLabel1.Size = new System.Drawing.Size(287, 17);
             this.linkLabel1.TabIndex = 3;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "http://www.cnblogs.com/dathlin/p/7469679.html";
+            this.linkLabel1.Text = "http://www.cnblogs.com/dathlin/p/7885368.html";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label4
@@ -810,9 +793,9 @@
             this.label5.ForeColor = System.Drawing.Color.Red;
             this.label5.Location = new System.Drawing.Point(540, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 17);
+            this.label5.Size = new System.Drawing.Size(106, 17);
             this.label5.TabIndex = 5;
-            this.label5.Text = "西门子S7协议";
+            this.label5.Text = "Modbus Tcp协议";
             // 
             // label20
             // 
@@ -824,35 +807,7 @@
             this.label20.TabIndex = 6;
             this.label20.Text = "作者：Richard Hu";
             // 
-            // userCurve1
-            // 
-            this.userCurve1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this.userCurve1.Location = new System.Drawing.Point(13, 82);
-            this.userCurve1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.userCurve1.Name = "userCurve1";
-            this.userCurve1.Size = new System.Drawing.Size(400, 189);
-            this.userCurve1.TabIndex = 0;
-            this.userCurve1.ValueMaxLeft = 200F;
-            this.userCurve1.ValueMaxRight = 200F;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(702, 7);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(68, 17);
-            this.label21.TabIndex = 6;
-            this.label21.Text = "地址示例：";
-            // 
-            // label22
-            // 
-            this.label22.Location = new System.Drawing.Point(776, 7);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(197, 45);
-            this.label22.TabIndex = 7;
-            this.label22.Text = "M100  I100  Q100 DB100.20";
-            // 
-            // FormSiemens
+            // FormModbus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -866,9 +821,9 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FormSiemens";
+            this.Name = "FormModbus";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "西门子PLC访问Demo";
+            this.Text = "Modbus Tcp访问Demo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSiemens_FormClosing);
             this.Load += new System.EventHandler(this.FormSiemens_Load);
             this.panel1.ResumeLayout(false);
@@ -935,7 +890,6 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label9;
@@ -952,7 +906,6 @@
         private System.Windows.Forms.Button button_read_int;
         private System.Windows.Forms.Button button_read_ushort;
         private System.Windows.Forms.Button button_read_short;
-        private System.Windows.Forms.Button button_read_byte;
         private System.Windows.Forms.Button button_read_bool;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label7;
@@ -961,7 +914,5 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
     }
 }

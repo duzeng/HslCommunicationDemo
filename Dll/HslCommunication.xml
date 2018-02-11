@@ -6909,6 +6909,13 @@
             <param name="address">起始地址的字符串形式</param>
             <returns></returns>
         </member>
+        <member name="M:HslCommunication.Profinet.MelsecNet.ReadULongFromPLC(System.String)">
+            <summary>
+            读取指定地址的ulong数据，针对数据类型W，D，R
+            </summary>
+            <param name="address">起始地址的字符串形式</param>
+            <returns></returns>
+        </member>
         <member name="M:HslCommunication.Profinet.MelsecNet.ReadDoubleFromPLC(System.String)">
             <summary>
             读取指定地址的double数据，针对数据类型W，D，R
@@ -7184,6 +7191,34 @@
             <returns>结果</returns>
         </member>
         <member name="M:HslCommunication.Profinet.MelsecNet.WriteIntoPLC(System.String,System.Int64)">
+            <summary>
+            向PLC写入数据，针对D和W的方式，数据格式为long数据
+            </summary>
+            <param name="address">初始地址的字符串表示形式</param>
+            <param name="data">double数组</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns>结果</returns>
+        </member>
+        <member name="M:HslCommunication.Profinet.MelsecNet.WriteIntoPLC(HslCommunication.Profinet.MelsecDataType,System.UInt16,System.UInt64[])">
+            <summary>
+            向PLC写入数据，针对D和W的方式，数据格式为long数组
+            </summary>
+            <param name="type">写入的数据类型</param>
+            <param name="address">初始地址</param>
+            <param name="data">double数组</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns>结果</returns>
+        </member>
+        <member name="M:HslCommunication.Profinet.MelsecNet.WriteIntoPLC(System.String,System.UInt64[])">
+            <summary>
+            向PLC写入数据，针对D和W的方式，数据格式为long数组
+            </summary>
+            <param name="address">初始地址的字符串表示形式</param>
+            <param name="data">double数组</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns>结果</returns>
+        </member>
+        <member name="M:HslCommunication.Profinet.MelsecNet.WriteIntoPLC(System.String,System.UInt64)">
             <summary>
             向PLC写入数据，针对D和W的方式，数据格式为long数据
             </summary>
