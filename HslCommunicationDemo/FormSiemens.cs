@@ -41,6 +41,10 @@ namespace HslCommunicationDemo
             userCurve1.SetLeftCurve( "A", new float[0], Color.Tomato );
         }
 
+        private void FormSiemens_FormClosing( object sender, FormClosingEventArgs e )
+        {
+
+        }
 
         /// <summary>
         /// 统一的读取结果的数据解析，显示
@@ -419,7 +423,7 @@ namespace HslCommunicationDemo
 
             if (!isThreadRun)
             {
-                if (int.TryParse( textBox14.Text, out timeSleep ))
+                if (!int.TryParse( textBox14.Text, out timeSleep ))
                 {
                     MessageBox.Show( "间隔时间格式输入错误！" );
                     return;
@@ -468,5 +472,6 @@ namespace HslCommunicationDemo
 
         #endregion
 
+        
     }
 }

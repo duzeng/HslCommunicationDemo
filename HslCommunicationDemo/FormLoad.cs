@@ -15,5 +15,15 @@ namespace HslCommunicationDemo
         {
             InitializeComponent( );
         }
+
+        private void button1_Click( object sender, EventArgs e )
+        {
+            Hide( );
+            using (FormSiemens form = new FormSiemens( HslCommunication.Profinet.SiemensPLCS.S1200 ))
+            {
+                form.ShowDialog( );
+            }
+            Close( );
+        }
     }
 }
