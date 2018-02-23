@@ -98,6 +98,14 @@ namespace HslCommunicationDemo
 
             melsec_net.PLCIpAddress = address;
 
+            if(!int.TryParse(textBox2.Text,out int port))
+            {
+                MessageBox.Show( "端口输入格式不正确！" );
+                return;
+            }
+
+            melsec_net.PortRead = port;
+
             try
             {
                 OperateResult connect = melsec_net.ConnectServer( );
