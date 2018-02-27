@@ -106,6 +106,8 @@ namespace HslCommunicationDemo
 
             melsec_net.PortRead = port;
 
+            melsec_net.ConnectClose( );
+
             try
             {
                 OperateResult connect = melsec_net.ConnectServer( );

@@ -23,7 +23,7 @@ namespace HslCommunicationDemo
             {
                 form.ShowDialog( );
             }
-            Close( );
+            Show( );
         }
 
 
@@ -34,7 +34,7 @@ namespace HslCommunicationDemo
             {
                 form.ShowDialog( );
             }
-            Close( );
+            Show( );
         }
 
         private void button4_Click( object sender, EventArgs e )
@@ -44,7 +44,7 @@ namespace HslCommunicationDemo
             {
                 form.ShowDialog( );
             }
-            Close( );
+            Show( );
         }
 
         private void button2_Click( object sender, EventArgs e )
@@ -54,7 +54,7 @@ namespace HslCommunicationDemo
             {
                 form.ShowDialog( );
             }
-            Close( );
+            Show( );
         }
 
         private void button3_Click( object sender, EventArgs e )
@@ -64,7 +64,17 @@ namespace HslCommunicationDemo
             {
                 form.ShowDialog( );
             }
-            Close( );
+            Show( );
+        }
+
+        private void button5_Click( object sender, EventArgs e )
+        {
+            Hide( );
+            using (FormSiemens form = new FormSiemens( HslCommunication.Profinet.SiemensPLCS.S200Smart ))
+            {
+                form.ShowDialog( );
+            }
+            Show( );
         }
 
         private void linkLabel1_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
@@ -78,5 +88,7 @@ namespace HslCommunicationDemo
                 MessageBox.Show( ex.Message );
             }
         }
+
+        
     }
 }

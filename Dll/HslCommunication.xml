@@ -653,6 +653,22 @@
             <param name="length">想要转换的长度，如果超出自动会缩小到数组最大长度</param>
             <returns></returns>
         </member>
+        <member name="M:HslCommunication.BasicFramework.SoftBasic.ByteToShortArray(System.Byte[],System.Boolean)">
+            <summary>
+            从byte数组中提取出short数组，并指定是否需要高地位置换
+            </summary>
+            <param name="InBytes"></param>
+            <param name="reverse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HslCommunication.BasicFramework.SoftBasic.ByteToUShortArray(System.Byte[],System.Boolean)">
+            <summary>
+            从byte数组中提取出ushort数组，并指定是否需要高地位置换
+            </summary>
+            <param name="InBytes"></param>
+            <param name="reverse"></param>
+            <returns></returns>
+        </member>
         <member name="P:HslCommunication.BasicFramework.SoftBasic.FrameworkVersion">
             <summary>
             设置或获取系统框架的版本号
@@ -724,6 +740,15 @@
             <param name="body">邮件内容</param>
             <returns>是否发送成功，内容不正确会被视为垃圾邮件</returns>
         </member>
+        <member name="M:HslCommunication.BasicFramework.SoftMail.SendMail(System.String,System.String,System.Boolean)">
+            <summary>
+            发送邮件至地址，需要提前指定发送地址，否则失败
+            </summary>
+            <param name="subject">邮件主题</param>
+            <param name="body">邮件内容</param>
+            <param name="isHtml">是否是html格式化文本</param>
+            <returns>是否发送成功，内容不正确会被视为垃圾邮件</returns>
+        </member>
         <member name="M:HslCommunication.BasicFramework.SoftMail.SendMail(System.Exception,System.String)">
             <summary>
             发生BUG至邮件地址，需要提前指定发送地址，否则失败
@@ -734,11 +759,21 @@
         </member>
         <member name="M:HslCommunication.BasicFramework.SoftMail.SendMail(System.String,System.String,System.String)">
             <summary>
+            发送邮件的方法，需要指定接收地址，主题及内容
+            </summary>
+            <param name="addr_to">接收地址</param>
+            <param name="subject">邮件主题</param>
+            <param name="body">邮件内容</param>
+            <returns>是否发送成功，内容不正确会被视为垃圾邮件</returns>
+        </member>
+        <member name="M:HslCommunication.BasicFramework.SoftMail.SendMail(System.String,System.String,System.String,System.Boolean)">
+            <summary>
             发送邮件的方法，默认发送别名，优先级，是否HTML
             </summary>
             <param name="addr_to">接收地址</param>
             <param name="subject">邮件主题</param>
             <param name="body">邮件内容</param>
+            <param name="isHtml">是否是html格式的内容</param>
             <returns>是否发送成功，内容不正确会被视为垃圾邮件</returns>
         </member>
         <member name="M:HslCommunication.BasicFramework.SoftMail.SendMail(System.String,System.String,System.String[],System.String,System.String,System.Net.Mail.MailPriority,System.Boolean)">
@@ -2721,14 +2756,6 @@
             </summary>
             <param name="timeout">数据封送对象</param>
             <param name="millisecond">超时的时间</param>
-        </member>
-        <member name="M:HslCommunication.Core.NetSupport.IsTwoBytesEquel(System.Byte[],System.Byte[])">
-            <summary>
-            判断两个字节是否相同
-            </summary>
-            <param name="b1">第一个字节</param>
-            <param name="b2">第二个字节</param>
-            <returns></returns>
         </member>
         <member name="M:HslCommunication.Core.NetSupport.CheckTokenEquel(System.Byte[],System.Guid)">
             <summary>
@@ -7658,6 +7685,11 @@
         <member name="F:HslCommunication.Profinet.SiemensPLCS.S1500">
             <summary>
             1500系列PLC
+            </summary>
+        </member>
+        <member name="F:HslCommunication.Profinet.SiemensPLCS.S200Smart">
+            <summary>
+            200的smart系列
             </summary>
         </member>
         <member name="T:HslCommunication.Profinet.SiemensTcpNet">
