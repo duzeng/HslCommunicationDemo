@@ -103,8 +103,15 @@ namespace HslCommunicationDemo
                 return;
             }
 
+
+            if(!byte.TryParse(textBox15.Text,out byte station))
+            {
+                MessageBox.Show( "站号输入不正确！" );
+                return;
+            }
+
             busTcpClient?.ConnectClose( );
-            busTcpClient = new ModBusTcpClient( textBox1.Text, port );
+            busTcpClient = new ModBusTcpClient( textBox1.Text, port, station );
 
             try
             {

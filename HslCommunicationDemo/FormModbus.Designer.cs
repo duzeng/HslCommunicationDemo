@@ -96,6 +96,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -110,6 +112,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.textBox15);
+            this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox2);
@@ -125,7 +129,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(584, 11);
+            this.button2.Location = new System.Drawing.Point(793, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(91, 28);
             this.button2.TabIndex = 5;
@@ -135,7 +139,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(477, 11);
+            this.button1.Location = new System.Drawing.Point(696, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 28);
             this.button1.TabIndex = 4;
@@ -807,6 +811,23 @@
             this.label20.TabIndex = 6;
             this.label20.Text = "作者：Richard Hu";
             // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(517, 14);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(141, 23);
+            this.textBox15.TabIndex = 7;
+            this.textBox15.Text = "1";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(463, 17);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(44, 17);
+            this.label21.TabIndex = 6;
+            this.label21.Text = "站号：";
+            // 
             // FormModbus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -914,5 +935,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.Label label21;
     }
 }
