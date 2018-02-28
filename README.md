@@ -9,6 +9,7 @@
 * 感谢 **丁** 对本软件的测试
 * 感谢 **∮溪风-⊙_⌒** 对本软件的测试
 * 感谢 **hwdq0012** 对本软件的测试
+* 感谢 **вｌāńｋ** 对本软件的测试
 
 ## 首页
 ![载入窗口](https://github.com/dathlin/HslCommunicationDemo/blob/master/imgs/4.png?raw=true)
